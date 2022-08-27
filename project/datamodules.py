@@ -12,20 +12,23 @@ class DataModule(pl.LightningDataModule):
         self.root_dir = os.environ['DATA_DIR']
 
     def train_dataloader(self):
-        return DataLoader(self.trainset, batch_size=128, num_workers=6, shuffle=True)
+        return DataLoader(self.trainset, batch_size=self.batch_size, num_workers=6, shuffle=True)
 
     
     def val_dataloader(self):
-        return DataLoader(self.validset, batch_size=128, num_workers=6, shuffle=False)
+        return DataLoader(self.validset, batch_size=self.batch_size, num_workers=6, shuffle=False)
     
 
     def test_dataloader(self):
-        return DataLoader(self.testset, batch_size=128, num_workers=6, shuffle=False)
+        return DataLoader(self.testset, batch_size=self.batch_size, num_workers=6, shuffle=False)
 
 
 class MNISTDataModule(DataModule):
     
     def setup(self, stage = None) -> None:
+        
+        self.batch_size = 64
+        
         transform = transforms.Compose([
             transforms.Resize((224, 224)),
             transforms.ToTensor(),
@@ -47,6 +50,8 @@ class MNISTDataModule(DataModule):
     
 class CIFAR10DataModule(DataModule):
     def setup(self, stage = None) -> None:
+        
+        self.batch_size = 64
 
         transform = transforms.Compose([
             transforms.Resize((224, 224)),
@@ -68,7 +73,7 @@ class CIFAR10DataModule(DataModule):
 
 class Fruit360DataModule(DataModule):
     def setup(self, stage = None) -> None:
-        
+        self.batch_size = 32        
         dataset_path = os.path.join(self.root_dir, 'fruits-360')
 
         transform = transforms.Compose([
@@ -84,15 +89,3 @@ class Fruit360DataModule(DataModule):
         self.trainset = trainset
         self.validset = validset
         self.testset = testset
-
-    
-    def train_dataloader(self):
-        return DataLoader(self.trainset, batch_size=32, num_workers=6, shuffle=True)
-
-    
-    def val_dataloader(self):
-        return DataLoader(self.validset, batch_size=32, num_workers=6, shuffle=False)
-    
-
-    def test_dataloader(self):
-        return DataLoader(self.testset, batch_size=32, num_workers=6, shuffle=False)

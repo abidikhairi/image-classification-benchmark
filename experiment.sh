@@ -1,6 +1,12 @@
+## ALEXNET Experiments
+DATA_DIR=./data python train.py --model alexnet --dataset mnist
+DATA_DIR=./data python train.py --model alexnet --dataset cifar10
+DATA_DIR=./data python train.py --model alexnet --dataset fruit360
+
 ## RESNET 18 Experiments
 DATA_DIR=./data python train.py --model resnet --dataset mnist
 DATA_DIR=./data python train.py --model resnet --dataset cifar10
+DATA_DIR=./data python train.py --model resnet --dataset fruit360
 
 ## VGG 16 Experiments
 DATA_DIR=./data python train.py --model vgg_16 --dataset mnist

@@ -18,7 +18,7 @@ def main(args):
     trainer.fit(model, datamodule=data)
     trainer.test(model, datamodule=data)
 
-    trainer.save_checkpoint('checkpoints/{}'.format(experiment_name))
+    trainer.save_checkpoint('checkpoints/{}.pt'.format(experiment_name))
 
 
 if __name__ == '__main__':
