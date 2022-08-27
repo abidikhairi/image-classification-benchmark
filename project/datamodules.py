@@ -12,15 +12,15 @@ class DataModule(pl.LightningDataModule):
         self.root_dir = os.environ['DATA_DIR']
 
     def train_dataloader(self):
-        return DataLoader(self.trainset, batch_size=128, shuffle=True)
+        return DataLoader(self.trainset, batch_size=128, num_workers=6, shuffle=True)
 
     
     def val_dataloader(self):
-        return DataLoader(self.validset, batch_size=128, shuffle=True)
+        return DataLoader(self.validset, batch_size=128, num_workers=6, shuffle=False)
     
 
     def test_dataloader(self):
-        return DataLoader(self.testset, batch_size=128, shuffle=False)
+        return DataLoader(self.testset, batch_size=128, num_workers=6, shuffle=False)
 
 
 class MNISTDataModule(DataModule):
@@ -43,7 +43,6 @@ class MNISTDataModule(DataModule):
         self.trainset = trainset
         self.validset = validset
         self.testset = testset
-
 
     
 class CIFAR10DataModule(DataModule):
