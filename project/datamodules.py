@@ -64,3 +64,23 @@ class CIFAR10DataModule(DataModule):
         self.trainset = trainset
         self.validset = validset
         self.testset = testset
+
+
+class Fruit360DataModule(DataModule):
+    def setup(self, stage = None) -> None:
+        
+        self.dataset_path = os.path.join(self.root_dir, 'fruits-360')
+
+        transform = transforms.Compose([
+            transforms.Resize((224, 224)),
+            transforms.ToTensor(),
+            transforms.Normalize(mean=(0.454, 0.455, 0.456), std=(0.551, 0.552, 0.553))
+        ])
+        
+        trainset = datasets.ImageFolder(root=os.path.join(self.root_dir, 'Training'), transform=transform)
+        validset = datasets.ImageFolder(root=os.path.join(self.root_dir, 'Validation'), transform=transform)
+        testset = datasets.ImageFolder(root=os.path.join(self.root_dir, 'Test'), transform=transform)
+
+        self.trainset = trainset
+        self.validset = validset
+        self.testset = testset
