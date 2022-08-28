@@ -1,5 +1,4 @@
 import pytorch_lightning as pl
-from torch import nn
 from torch import optim
 from torch.nn import functional as F    # for torch.nn.functional.cross_entropy/softmax
 from torchvision import models
@@ -62,28 +61,42 @@ class AlexNet(Module):
         self.cnn = models.alexnet(num_classes=self.num_classes)
         
 
-class VGG16(Module):
+class VGG11(Module):
     def __init__(self,*args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        self.cnn = models.vgg16_bn(num_classes=self.num_classes)
+        self.cnn = models.vgg11(num_classes=self.num_classes)
         
 
-class VGG19(Module):
+class VGG13(Module):
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
 
-        self.cnn = models.vgg19_bn(num_classes=self.num_classes)
+        self.cnn = models.vgg13(num_classes=self.num_classes)
 
 
-class ResNet(Module):
+class ResNet18(Module):
     def __init__(self, num_classes, *args, **kwargs) -> None:
         super().__init__(num_classes, *args, **kwargs)
 
         self.cnn = models.resnet18(num_classes=self.num_classes)
+
+class ResNet34(Module):
+    def __init__(self, num_classes, *args, **kwargs) -> None:
+        super().__init__(num_classes, *args, **kwargs)
+
+        self.cnn = models.resnet34(num_classes=self.num_classes)
+
 
 class Inception(Module):
     def __init__(self, num_classes, *args, **kwargs) -> None:
         super().__init__(num_classes, *args, **kwargs)
 
         self.cnn = models.inception_v3(num_classes=self.num_classes)
+
+
+class DenseNet(Module):
+    def __init__(self, num_classes, *args, **kwargs) -> None:
+        super().__init__(num_classes, *args, **kwargs)
+
+        self.cnn = models.densenet161(num_classes=self.num_classes)

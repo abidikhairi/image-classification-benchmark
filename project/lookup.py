@@ -1,5 +1,5 @@
 from project.datamodules import CIFAR10DataModule, Fruit360DataModule, MNISTDataModule
-from project.modules import ResNet, AlexNet, VGG16, VGG19, Inception
+from project.modules import DenseNet, ResNet18, AlexNet, VGG11, Inception, VGG13, ResNet34
 
 
 datasets = {
@@ -10,9 +10,8 @@ datasets = {
 
 models = {
     'alexnet': AlexNet,
-    'resnet': ResNet,
-    'vgg_16': VGG16,
-    'vgg_19': VGG19,
-    'inception': Inception
+    'resnet18': ResNet18,
+    'resnet34': ResNet34,
+    'densenet': DenseNet,
 }
 

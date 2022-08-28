@@ -27,7 +27,7 @@ class MNISTDataModule(DataModule):
     
     def setup(self, stage = None) -> None:
         
-        self.batch_size = 64
+        self.batch_size = 8
         
         transform = transforms.Compose([
             transforms.Resize((224, 224)),
@@ -51,7 +51,7 @@ class MNISTDataModule(DataModule):
 class CIFAR10DataModule(DataModule):
     def setup(self, stage = None) -> None:
         
-        self.batch_size = 64
+        self.batch_size = 8
 
         transform = transforms.Compose([
             transforms.Resize((224, 224)),
@@ -73,7 +73,7 @@ class CIFAR10DataModule(DataModule):
 
 class Fruit360DataModule(DataModule):
     def setup(self, stage = None) -> None:
-        self.batch_size = 32        
+        self.batch_size = 8        
         dataset_path = os.path.join(self.root_dir, 'fruits-360')
 
         transform = transforms.Compose([
